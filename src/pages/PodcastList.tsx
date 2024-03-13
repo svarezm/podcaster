@@ -34,7 +34,6 @@ const PodcastList: React.FC = () => {
 
     return (
         <div>
-            <h2>Top 100 Podcasts</h2>
             <input type="text" placeholder="Search..." onChange={handleSearch} />
             <div className="podcast-list">
                 {filteredPodcasts.map((podcast) => (
