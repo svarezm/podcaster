@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SearchBar from '../components/SearchBar';
 import { getTopPodcasts } from '../services/api';
 import { Podcast } from '../types';
-import { getPodcastsData, savePodcastsData } from '../services/localStorage';
+import { getPodcastsStoraged, savePodcastsStoraged } from '../services/localStorage';
 import '../styles/PodcastList.scss';
 
 const PodcastList: React.FC = () => {
@@ -10,7 +10,7 @@ const PodcastList: React.FC = () => {
     const [filteredPodcasts, setFilteredPodcasts] = useState<Podcast[]>([]);
 
     useEffect(() => {
-        const storedData = getPodcastsData();
+        const storedData = getPodcastsStoraged();
         if (storedData) {
             setPodcasts(storedData);
             setFilteredPodcasts(storedData);
@@ -23,7 +23,7 @@ const PodcastList: React.FC = () => {
         const data = await getTopPodcasts();
         setPodcasts(data);
         setFilteredPodcasts(data);
-        savePodcastsData(data);
+        savePodcastsStoraged(data);
     };
 
     const handleSearch = (searchTerm: string) => {

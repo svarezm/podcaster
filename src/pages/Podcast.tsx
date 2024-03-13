@@ -4,6 +4,7 @@ import { getPodcastDetails } from '../services/api';
 import PodcastDetail from '../components/PodcastDetail';
 import EpisodeList from '../components/EpisodeList';
 import { Episode, PodcastDetails } from '../types';
+import { getPodcastDetailStoraged, savePodcastDetailStoraged } from '../services/localStorage';
 
 const Podcast: React.FC = () => {
     const { podcastId } = useParams<{ podcastId: string }>();
@@ -12,17 +13,26 @@ const Podcast: React.FC = () => {
 
     useEffect(() => {
         if (!podcastId) return;
+        const podcastStoraged = getPodcastDetailStoraged(podcastId);
+        console.log({ podcastStoraged })
+        if (podcastStoraged) {
+            setPodcastDetail(podcastStoraged.podcastDetails);
+            setEpisodes(podcastStoraged.episodes);
+        } else {
+            fetchPodcastDetailData();
+        }
 
-        const fetchData = async () => {
-            const { podcastDetails, episodes } = await getPodcastDetails(podcastId);
-            setPodcastDetail(podcastDetails);
-            setEpisodes(episodes);
-        };
+    }, []);
 
-        fetchData();
-    }, [podcastId]);
+    const fetchPodcastDetailData = async () => {
+        if (!podcastId) return
+        const { podcastDetails, episodes } = await getPodcastDetails(podcastId);
+        setPodcastDetail(podcastDetails);
+        setEpisodes(episodes);
+        savePodcastDetailStoraged(podcastId, podcastDetails, episodes);
+    };
 
-    if (!podcastDetail || episodes.length === 0) return <div>Loading...</div>;
+    if (!podcastDetail) return <div>Loading...</div>;
 
     return (
         <div>
