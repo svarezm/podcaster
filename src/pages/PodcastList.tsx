@@ -38,7 +38,7 @@ const PodcastList: React.FC = () => {
 
     return (
         <div>
-            <SearchBar onSearch={handleSearch} />
+            <span>{filteredPodcasts.length}</span> <SearchBar onSearch={handleSearch} />
             <div className="podcast-list">
                 {filteredPodcasts.map((podcast) => (
                     <div className="podcast-card" key={podcast.id}>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getPodcastDetails } from '../services/api';
 import { PodcastDetails, Episode } from '../types';
+import { getPodcastDetailStoraged } from '../services/localStorage';
 
 const EpisodePage: React.FC = () => {
     const { podcastId, episodeId } = useParams<{ podcastId: string, episodeId: string }>();
@@ -9,17 +10,26 @@ const EpisodePage: React.FC = () => {
     const [episode, setEpisode] = useState<Episode | null>(null);
 
     useEffect(() => {
-        if (!podcastId || !episodeId) return;
-        const fetchData = async () => {
-            const { podcastDetails, episodes } = await getPodcastDetails(podcastId);
-            const selectedEpisode = episodes.find((ep: Episode) => ep.trackId.toString() === episodeId);
-            if (!selectedEpisode) return
-            setPodcastDetail(podcastDetails);
+        if (!podcastId) return;
+        const podcastStoraged = getPodcastDetailStoraged(podcastId);
+        if (podcastStoraged) {
+            const selectedEpisode = podcastStoraged.episodes.find((ep: Episode) => ep.trackId.toString() === episodeId);
+            setPodcastDetail(podcastStoraged.podcastDetails);
             setEpisode(selectedEpisode);
-        };
+        } else {
+            fetchEpisodeDetailData();
+        }
 
-        fetchData();
-    }, [podcastId, episodeId]);
+    }, []);
+
+    const fetchEpisodeDetailData = async () => {
+        if (!podcastId) return
+        const { podcastDetails, episodes } = await getPodcastDetails(podcastId);
+        const selectedEpisode = episodes.find((ep: Episode) => ep.trackId.toString() === episodeId);
+        if (!selectedEpisode) return
+        setPodcastDetail(podcastDetails);
+        setEpisode(selectedEpisode);
+    };
 
     if (!podcastDetail || !episode) return <div>Loading...</div>;
 
