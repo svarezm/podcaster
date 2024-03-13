@@ -8,7 +8,6 @@ export const getTopPodcasts = async (): Promise<Podcast[]> => {
   try {
     const response = await axios.get(`${API_BASE_URL}us/rss/toppodcasts/limit=100/genre=1310/json`);
     const data: Entry[] = response.data.feed.entry;
-    console.log({data})
     const podcasts: Podcast[] = data.map((entry: Entry) => ({
         id: entry.id.attributes['im:id'],
         name: entry['im:name'].label,

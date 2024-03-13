@@ -1,20 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getTopPodcasts } from '../services/api';
-import { Podcast } from '../types/podcast';
+import { Podcast } from '../types';
+import { getPodcastsData, savePodcastsData } from '../services/localStorage';
 
 const PodcastList: React.FC = () => {
     const [podcasts, setPodcasts] = useState<Podcast[]>([]);
     const [filteredPodcasts, setFilteredPodcasts] = useState<Podcast[]>([]);
 
     useEffect(() => {
-        const fetchPodcasts = async () => {
-            const data = await getTopPodcasts();
-            setPodcasts(data);
-            setFilteredPodcasts(data);
-        };
-
-        fetchPodcasts();
+        const storedData = getPodcastsData();
+        if (storedData) {
+            setPodcasts(storedData);
+            setFilteredPodcasts(storedData);
+        } else {
+            fetchPodcastsData();
+        }
     }, []);
+
+    const fetchPodcastsData = async () => {
+        const data = await getTopPodcasts();
+        setPodcasts(data);
+        setFilteredPodcasts(data);
+        savePodcastsData(data);
+    };
 
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         const searchTerm = event.target.value.toLowerCase();
@@ -26,6 +34,7 @@ const PodcastList: React.FC = () => {
 
     return (
         <div>
+            <h2>Top 100 Podcasts</h2>
             <input type="text" placeholder="Search..." onChange={handleSearch} />
             <div className="podcast-list">
                 {filteredPodcasts.map((podcast) => (
