@@ -6,7 +6,7 @@ import EpisodeList from '../components/EpisodeList';
 import { Episode, PodcastDetails } from '../types';
 import { getPodcastDetailStoraged, savePodcastDetailStoraged } from '../services/localStorage';
 
-const Podcast: React.FC = () => {
+const PodcastPage: React.FC = () => {
     const { podcastId } = useParams<{ podcastId: string }>();
     const [podcastDetail, setPodcastDetail] = useState<PodcastDetails | null>(null);
     const [episodes, setEpisodes] = useState<Episode[]>([]);
@@ -14,7 +14,6 @@ const Podcast: React.FC = () => {
     useEffect(() => {
         if (!podcastId) return;
         const podcastStoraged = getPodcastDetailStoraged(podcastId);
-        console.log({ podcastStoraged })
         if (podcastStoraged) {
             setPodcastDetail(podcastStoraged.podcastDetails);
             setEpisodes(podcastStoraged.episodes);
@@ -44,4 +43,4 @@ const Podcast: React.FC = () => {
     );
 };
 
-export default Podcast;
+export default PodcastPage;
