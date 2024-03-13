@@ -1,0 +1,29 @@
+.episode-table {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 200px); 
+    overflow-y: auto; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
+}
+
+.episode-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #888; 
+}
+
+.episode-column {
+    flex: 1;
+    padding: 8px;
+    display: flex; 
+    flex-direction: column; 
+}
+
+.episode-header {
+    font-weight: bold;
+    border-bottom: 2px solid #888; 
+}
+
+.episode-row:nth-child(even) {
+    background-color: #f5f5f5; 
+}

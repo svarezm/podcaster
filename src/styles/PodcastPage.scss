@@ -1,0 +1,13 @@
+.podcast-content {
+    display: grid;
+    grid-template-columns: 25% 75%; 
+    grid-gap: 20px; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+    .podcast-content {
+        grid-template-columns: 100%; 
+    }
+}

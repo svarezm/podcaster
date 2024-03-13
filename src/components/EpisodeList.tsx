@@ -1,5 +1,8 @@
 import React from 'react';
 import { Episode } from '../types';
+import { formatReleaseDate } from '../utils/dateUtils';
+import { formatDuration } from '../utils/formDuration';
+import '../styles/EpisodeList.scss';
 
 type EpisodeListProps = {
     episodes: Episode[];
@@ -10,15 +13,26 @@ const EpisodeList: React.FC<EpisodeListProps> = ({ episodes, podcastId }) => {
     return (
         <div className="main-content">
             <h2>Episodes ({episodes.length})</h2>
-            <ul>
-                {episodes.map((episode) => (
-                    <li key={episode.trackId}>
-                        <a href={`/podcast/${podcastId}/episode/${episode.trackId}`}>{episode.trackName}</a>
-                        <p>Release Date: {episode.releaseDate}</p>
-                        <p>Duration: {episode.trackTimeMillis}</p>
-                    </li>
+            <div className="episode-table">
+                <div className="episode-row episode-header">
+                    <div className="episode-column">Title</div>
+                    <div className="episode-column">Date</div>
+                    <div className="episode-column">Duration</div>
+                </div>
+                {episodes.map((episode, index) => (
+                    <div className="episode-row" key={episode.trackId}>
+                        <div className="episode-column">
+                            <a href={`/podcast/${podcastId}/episode/${episode.trackId}`}>{episode.trackName}</a>
+                        </div>
+                        <div className="episode-column">
+                            {formatReleaseDate(episode.releaseDate)}
+                        </div>
+                        <div className="episode-column">
+                            {formatDuration(episode.trackTimeMillis)}
+                        </div>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

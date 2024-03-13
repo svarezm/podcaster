@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getPodcastDetails } from '../services/api';
 import { PodcastDetails, Episode } from '../types';
 import { getPodcastDetailStoraged } from '../services/localStorage';
+import '../styles/EpisodePage.scss';
 
 const EpisodePage: React.FC = () => {
     const { podcastId, episodeId } = useParams<{ podcastId: string, episodeId: string }>();
