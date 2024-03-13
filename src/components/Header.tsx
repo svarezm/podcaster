@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom"
+
 const EpisodeDetail: React.FC = () => {
     return (
-        <div>
-            Header
-        </div>
+        <header>
+            <Link to="/">Podcaster</Link>
+        </header>
     )
 }
 
