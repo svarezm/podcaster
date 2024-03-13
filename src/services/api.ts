@@ -26,7 +26,7 @@ export const getPodcastDetails = async (podcastId: string): Promise<{ podcastDet
         const response = await axios.get(`${CORS_URL}${API_BASE_URL}lookup?id=${podcastId}&country=US&media=podcast&entity=podcastEpisode`);
         const data =  response.data.results[0];
         const podcastDetails: PodcastDetails = {
-            id: data.id,
+            id: data.trackId,
             title: data.trackName,
             artistName: data.artistName,
             collectionName: data.collectionName,

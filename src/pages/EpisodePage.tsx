@@ -4,6 +4,7 @@ import { getPodcastDetails } from '../services/api';
 import { PodcastDetails, Episode } from '../types';
 import { getPodcastDetailStoraged } from '../services/localStorage';
 import '../styles/EpisodePage.scss';
+import PodcastDetail from '../components/PodcastDetail';
 
 const EpisodePage: React.FC = () => {
     const { podcastId, episodeId } = useParams<{ podcastId: string, episodeId: string }>();
@@ -36,13 +37,7 @@ const EpisodePage: React.FC = () => {
 
     return (
         <div className='container'>
-            <div className="sidebar">
-                <Link to={`/podcast/${podcastId}`}>
-                    <img src={podcastDetail.artwork} alt={podcastDetail.title} />
-                    <h2>{podcastDetail.title}</h2>
-                    <p>Author: {podcastDetail.artistName}</p>
-                </Link>
-            </div>
+            <PodcastDetail podcastDetail={podcastDetail} />
             <div className="main-content">
                 <h2>{episode.trackName}</h2>
                 <p dangerouslySetInnerHTML={{ __html: episode.description }}></p>

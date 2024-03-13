@@ -35,11 +35,9 @@ const PodcastPage: React.FC = () => {
     if (!podcastDetail) return <div>Loading...</div>;
 
     return (
-        <div>
-            <div className="podcast-content">
-                <PodcastDetail podcastDetail={podcastDetail} />
-                {podcastId && <EpisodeList episodes={episodes} podcastId={podcastId} />}
-            </div>
+        <div className="podcast-content">
+            <PodcastDetail podcastDetail={podcastDetail} />
+            {podcastId && <EpisodeList episodes={episodes} podcastId={podcastId} />}
         </div>
     );
 };
