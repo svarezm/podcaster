@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SearchBar from '../components/SearchBar';
 import { getTopPodcasts } from '../services/api';
 import { Podcast } from '../types';
 import { getPodcastsData, savePodcastsData } from '../services/localStorage';
@@ -25,9 +26,8 @@ const PodcastList: React.FC = () => {
         savePodcastsData(data);
     };
 
-    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (!podcasts) return
-        const searchTerm = event.target.value.toLowerCase();
+    const handleSearch = (searchTerm: string) => {
+        if (!podcasts) return;
         const filtered = podcasts.filter(podcast =>
             podcast.name.toLowerCase().includes(searchTerm)
         );
@@ -38,7 +38,7 @@ const PodcastList: React.FC = () => {
 
     return (
         <div>
-            <input type="text" placeholder="Search..." onChange={handleSearch} />
+            <SearchBar onSearch={handleSearch} />
             <div className="podcast-list">
                 {filteredPodcasts.map((podcast) => (
                     <div className="podcast-card" key={podcast.id}>
