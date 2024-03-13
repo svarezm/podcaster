@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from "./components/Header";
 import EpisodeDetail from "./pages/EpisodeDetail";
-import PodcastDetail from "./pages/PodcastDetail";
+import Podcast from "./pages/Podcast";
 import PodcastList from "./pages/PodcastList";
 
 
@@ -12,7 +12,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<PodcastList />} />
-          <Route path="/podcast/:podcastId" element={<PodcastDetail />} />
+          <Route path="/podcast/:podcastId" element={<Podcast />} />
           <Route path="/episode/:episodeId" element={<EpisodeDetail />} />
         </Routes>
       </div>
