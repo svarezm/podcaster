@@ -5,7 +5,7 @@ import { getPodcastsData, savePodcastsData } from '../services/localStorage';
 import '../styles/PodcastList.scss';
 
 const PodcastList: React.FC = () => {
-    const [podcasts, setPodcasts] = useState<Podcast[]>([]);
+    const [podcasts, setPodcasts] = useState<Podcast[] | null>(null);
     const [filteredPodcasts, setFilteredPodcasts] = useState<Podcast[]>([]);
 
     useEffect(() => {
@@ -26,12 +26,15 @@ const PodcastList: React.FC = () => {
     };
 
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (!podcasts) return
         const searchTerm = event.target.value.toLowerCase();
         const filtered = podcasts.filter(podcast =>
             podcast.name.toLowerCase().includes(searchTerm)
         );
         setFilteredPodcasts(filtered);
     };
+
+    if (!podcasts) return <div>Loading...</div>;
 
     return (
         <div>
