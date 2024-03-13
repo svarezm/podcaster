@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getTopPodcasts } from '../services/api';
 import { Podcast } from '../types/podcast';
 
 const PodcastList: React.FC = () => {
@@ -6,13 +7,13 @@ const PodcastList: React.FC = () => {
     const [filteredPodcasts, setFilteredPodcasts] = useState<Podcast[]>([]);
 
     useEffect(() => {
-        const podcasts = [{
-            id: '1234',
-            name: 'name',
-            artist: 'artist',
-            image: 'image',
-        }]
-        setFilteredPodcasts(podcasts);
+        const fetchPodcasts = async () => {
+            const data = await getTopPodcasts();
+            setPodcasts(data);
+            setFilteredPodcasts(data);
+        };
+
+        fetchPodcasts();
     }, []);
 
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
