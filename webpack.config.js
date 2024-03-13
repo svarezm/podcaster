@@ -35,9 +35,9 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: 'public/index.html',
         inject: true,
-        favicon: "./public/favicon.ico",
-        manifest: "./public/manifest.json",
-      }),
+        favicon: path.resolve(__dirname, 'public/favicon.ico'), 
+        manifest: path.resolve(__dirname, 'public/manifest.json'),
+      }),  
       isDevelopment ? undefined : new CleanWebpackPlugin(),
     ].filter(Boolean),
     devServer: {
