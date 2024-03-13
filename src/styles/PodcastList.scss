@@ -1,0 +1,52 @@
+.podcast-list {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    justify-content: start;
+  
+    .podcast-card {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out;
+  
+      &:hover {
+        transform: translateY(-5px);
+      }
+  
+      .podcast-link {
+        display: block;
+        text-decoration: none;
+  
+        .podcast-image-container {
+          width: 100%;
+          overflow: hidden;
+          border-radius: 100%;
+  
+          .podcast-image {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+          }
+        }
+  
+        .podcast-info {
+          padding: 10px;
+  
+          .podcast-title {
+            margin: 0;
+            font-weight: bold;
+          }
+  
+          .podcast-artist {
+            margin: 0;
+            font-style: italic;
+          }
+        }
+      }
+    }
+  }
+  

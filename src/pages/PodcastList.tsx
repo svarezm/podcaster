@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getTopPodcasts } from '../services/api';
 import { Podcast } from '../types';
 import { getPodcastsData, savePodcastsData } from '../services/localStorage';
+import '../styles/PodcastList.scss';
 
 const PodcastList: React.FC = () => {
     const [podcasts, setPodcasts] = useState<Podcast[]>([]);
