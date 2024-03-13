@@ -29,7 +29,7 @@ const PodcastList: React.FC = () => {
     const handleSearch = (searchTerm: string) => {
         if (!podcasts) return;
         const filtered = podcasts.filter(podcast =>
-            podcast.name.toLowerCase().includes(searchTerm)
+            podcast.name.toLowerCase().includes(searchTerm) || podcast.artist.toLowerCase().includes(searchTerm)
         );
         setFilteredPodcasts(filtered);
     };
