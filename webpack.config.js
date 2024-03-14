@@ -8,6 +8,7 @@ module.exports = (env, argv) => {
   return {
     entry: './src/index.tsx',
     output: {
+      publicPath: '/',
       path: path.resolve(__dirname, 'dist'),
       filename: isDevelopment ? 'bundle.js' : 'bundle.[contenthash].js',
     },
@@ -45,6 +46,7 @@ module.exports = (env, argv) => {
         directory: path.join(__dirname, 'dist'),
       },
       hot: true,
+      historyApiFallback: true
     },
   };
 };
