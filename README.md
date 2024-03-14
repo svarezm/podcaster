@@ -18,7 +18,7 @@ o
 yarn start
 ``` 
 
-Este comando iniciará la aplicación en modo de desarrollo. Puedes acceder a ella en tu navegador web visitando la URL http://localhost:3000.
+Este comando iniciará la aplicación en modo de desarrollo. Puedes acceder a ella en tu navegador web visitando la URL http://localhost:8080.
 
 ## Ejecutar en modo de producción
 
@@ -45,7 +45,7 @@ Este comando generará una versión optimizada de la aplicación en la carpeta `
 4. Luego, sirve la aplicación utilizando un servidor web estático. Puedes usar herramientas como Serve o http-server. Por ejemplo, si tienes Serve instalado globalmente, puedes ejecutar:
 
 ```javascript
-serve -s build
+serve -s dist
 ```
 
 Esto servirá la aplicación en modo de producción en tu localhost. Puedes acceder a ella en tu navegador web visitando la URL que se muestra en la terminal.
