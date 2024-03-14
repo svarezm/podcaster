@@ -5,7 +5,7 @@ import PodcastDetail from '../components/PodcastDetail';
 import EpisodeList from '../components/EpisodeList';
 import { Episode, PodcastDetails } from '../types';
 import { getPodcastDetailStoraged, savePodcastDetailStoraged } from '../services/localStorage';
-import '../styles/PodcastPage.scss';
+import '../styles/pages/PodcastPage.scss';
 
 const PodcastPage: React.FC = () => {
     const { podcastId } = useParams<{ podcastId: string }>();

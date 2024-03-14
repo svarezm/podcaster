@@ -1,3 +1,4 @@
+import "../styles/components/SearchBar.scss"
 const SearchBar: React.FC<{ onSearch: (term: string) => void }> = ({ onSearch }) => {
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const searchTerm = event.target.value.toLowerCase();
@@ -5,7 +6,7 @@ const SearchBar: React.FC<{ onSearch: (term: string) => void }> = ({ onSearch })
     };
 
     return (
-        <input type="text" placeholder="Search..." onChange={handleSearchChange} />
+        <input className="search-bar" type="text" placeholder="Search..." onChange={handleSearchChange} />
     );
 };
 

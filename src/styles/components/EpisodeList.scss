@@ -1,9 +1,21 @@
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: calc(100% - 20px);
+}
+.episodes-count {
+    box-shadow: 0 4px 4px rgba(87, 87, 87, 0.1); 
+    border: 1px solid rgba(87, 87, 87, 0.1);
+    padding: 10px;
+    width: 100%;
+}
 .episode-table {
     display: flex;
     flex-direction: column;
     max-height: calc(100vh - 200px); 
     overflow-y: auto; 
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 4px rgba(87, 87, 87, 0.1); 
 }
 
 .episode-row {

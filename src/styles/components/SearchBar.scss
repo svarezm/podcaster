@@ -1,0 +1,18 @@
+.search-bar {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+
+    &::placeholder {
+    color: #999;
+    }
+
+    &:focus {
+    border-color: #007bff; /* Azul oscuro cuando el input está enfocado */
+    }
+  }
+  

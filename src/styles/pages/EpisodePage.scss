@@ -1,0 +1,27 @@
+.episode-page {
+    display: grid;
+    grid-template-columns: 25% 75%; 
+    grid-gap: 20px; 
+    width: 100%;
+    box-sizing: border-box;
+
+    &__content {
+        box-shadow: 0 4px 4px rgba(87, 87, 87, 0.1); 
+        border: 1px solid rgba(87, 87, 87, 0.1);
+        width: calc(100% - 20px);
+        padding: 20px;
+    }
+    &__title,
+    &__description {
+        margin-bottom: 10px;
+    }
+    &__audio {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .episode-page {
+        grid-template-columns: 100%; 
+    }
+}

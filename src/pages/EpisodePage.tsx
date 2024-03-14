@@ -3,8 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { getPodcastDetails } from '../services/api';
 import { PodcastDetails, Episode } from '../types';
 import { getPodcastDetailStoraged } from '../services/localStorage';
-import '../styles/EpisodePage.scss';
 import PodcastDetail from '../components/PodcastDetail';
+import '../styles/pages/EpisodePage.scss';
 
 const EpisodePage: React.FC = () => {
     const { podcastId, episodeId } = useParams<{ podcastId: string, episodeId: string }>();
@@ -36,12 +36,12 @@ const EpisodePage: React.FC = () => {
     if (!podcastDetail || !episode) return <div>Loading...</div>;
 
     return (
-        <div className='container'>
+        <div className='episode-page'>
             <PodcastDetail podcastDetail={podcastDetail} />
-            <div className="main-content">
-                <h2>{episode.trackName}</h2>
-                <p dangerouslySetInnerHTML={{ __html: episode.description }}></p>
-                <audio controls>
+            <div className="episode-page__content">
+                <h2 className="episode-page__title">{episode.trackName}</h2>
+                <p className="episode-page__description" dangerouslySetInnerHTML={{ __html: episode.description }}></p>
+                <audio className="episode-page__audio" controls>
                     <source src={episode.episodeUrl} type="audio/mpeg" />
                     Your browser does not support the audio element.
                 </audio>

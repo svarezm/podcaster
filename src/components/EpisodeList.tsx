@@ -2,7 +2,7 @@ import React from 'react';
 import { Episode } from '../types';
 import { formatReleaseDate } from '../utils/dateUtils';
 import { formatDuration } from '../utils/formDuration';
-import '../styles/EpisodeList.scss';
+import '../styles/components/EpisodeList.scss';
 
 type EpisodeListProps = {
     episodes: Episode[];
@@ -11,8 +11,10 @@ type EpisodeListProps = {
 
 const EpisodeList: React.FC<EpisodeListProps> = ({ episodes, podcastId }) => {
     return (
-        <div className="main-content">
-            <h2>Episodes ({episodes.length})</h2>
+        <div className='flex-column'>
+            <div className="episodes-count">
+                <h2>Episodes: {episodes.length}</h2>
+            </div>
             <div className="episode-table">
                 <div className="episode-row episode-header">
                     <div className="episode-column">Title</div>

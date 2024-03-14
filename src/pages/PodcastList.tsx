@@ -3,7 +3,7 @@ import SearchBar from '../components/SearchBar';
 import { getTopPodcasts } from '../services/api';
 import { Podcast } from '../types';
 import { getPodcastsStoraged, savePodcastsStoraged } from '../services/localStorage';
-import '../styles/PodcastList.scss';
+import '../styles/pages/PodcastList.scss';
 
 const PodcastList: React.FC = () => {
     const [podcasts, setPodcasts] = useState<Podcast[] | null>(null);
@@ -37,9 +37,12 @@ const PodcastList: React.FC = () => {
     if (!podcasts) return <div>Loading...</div>;
 
     return (
-        <div>
-            <span>{filteredPodcasts.length}</span> <SearchBar onSearch={handleSearch} />
-            <div className="podcast-list">
+        <div className="podcast-page">
+            <div className="podcast-page__header">
+                <span className="podcast-page__badge">{filteredPodcasts.length}</span>
+                <SearchBar onSearch={handleSearch} />
+            </div>
+            <div className="podcast-page__list">
                 {filteredPodcasts.map((podcast) => (
                     <div className="podcast-card" key={podcast.id}>
                         <a href={`/podcast/${podcast.id}`} className="podcast-link">

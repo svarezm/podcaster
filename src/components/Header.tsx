@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom"
+import "../styles/components/Header.scss"
 
 const EpisodeDetail: React.FC = () => {
     return (
-        <header>
-            <Link to="/">Podcaster</Link>
+        <header className="header">
+            <Link to="/" className="header__link">
+                Podcaster
+            </Link>
         </header>
     )
 }
