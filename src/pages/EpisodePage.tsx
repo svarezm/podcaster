@@ -40,7 +40,7 @@ const EpisodePage: React.FC = () => {
             <PodcastDetail podcastDetail={podcastDetail} />
             <div className="episode-page__content">
                 <h2 className="episode-page__title">{episode.trackName}</h2>
-                <p className="episode-page__description" dangerouslySetInnerHTML={{ __html: episode.description }}></p>
+                <p className="episode-page__description" dangerouslySetInnerHTML={{ __html: episode.description.replace(/\n/g, '<br />') }}></p>
                 <audio className="episode-page__audio" controls>
                     <source src={episode.episodeUrl} type="audio/mpeg" />
                     Your browser does not support the audio element.

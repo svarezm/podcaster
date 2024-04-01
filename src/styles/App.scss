@@ -15,8 +15,17 @@ html {
   font-size: 16px;
 }
 
-a {
+a, 
+a:visited {
   text-decoration: none;
+  color: #333; 
+  text-decoration: none;
+}
+a:hover {
+  color: #666;
+}
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .page {
     margin: 10px;

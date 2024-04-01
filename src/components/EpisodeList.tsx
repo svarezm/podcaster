@@ -21,10 +21,10 @@ const EpisodeList: React.FC<EpisodeListProps> = ({ episodes, podcastId }) => {
                     <div className="episode-column">Date</div>
                     <div className="episode-column">Duration</div>
                 </div>
-                {episodes.map((episode, index) => (
+                {episodes.map((episode) => (
                     <div className="episode-row" key={episode.trackId}>
                         <div className="episode-column">
-                            <a href={`/podcast/${podcastId}/episode/${episode.trackId}`}>{episode.trackName}</a>
+                            <a className="episode-column__link" href={`/podcast/${podcastId}/episode/${episode.trackId}`}>{episode.trackName}</a>
                         </div>
                         <div className="episode-column">
                             {formatReleaseDate(episode.releaseDate)}
