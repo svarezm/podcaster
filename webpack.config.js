@@ -12,6 +12,9 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, 'dist'),
       filename: isDevelopment ? 'bundle.js' : 'bundle.[contenthash].js',
     },
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js'],
+    },
     module: {
       rules: [
         {
@@ -29,21 +32,16 @@ module.exports = (env, argv) => {
         },
       ],
     },
-    resolve: {
-      extensions: ['.tsx', '.ts', '.js'],
-    },
     plugins: [
       new HtmlWebpackPlugin({
         template: 'public/index.html',
-        inject: true,
-        favicon: path.resolve(__dirname, 'public/favicon.ico'), 
-        manifest: path.resolve(__dirname, 'public/manifest.json'),
+        filename: 'index.html',
+        base: '/',
       }),  
-      isDevelopment ? undefined : new CleanWebpackPlugin(),
-    ].filter(Boolean),
+    ],
     devServer: {
       static: {
-        directory: path.join(__dirname, 'dist'),
+        directory: path.join(__dirname, 'public'),
       },
       hot: true,
       historyApiFallback: true
